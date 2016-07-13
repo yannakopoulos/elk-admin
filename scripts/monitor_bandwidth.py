@@ -21,10 +21,7 @@ parser.add_argument('-p', '--port', action='store', dest='es_port', type=int,
 args = parser.parse_args()
 
 
-with daemon.DaemonContext(
-    stdout=sys.stdout,
-    stderr=sys.stderr
-):
+with daemon.DaemonContext():
     client = es.Elasticsearch([{'host': args.es_host, 'port': args.es_port}])
     date_p = re.compile('(\d{1,2}\/\d{1,2}\/\d{4}) ' +
                         '(\d{1,2}:\d{2} \w{2}) - \d{1,2}:\d{2} \w{2}')
